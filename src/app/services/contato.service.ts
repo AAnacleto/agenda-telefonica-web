@@ -8,11 +8,13 @@ import { Contato } from '../models/contato.model';
 })
 export class ContatoService {
 
-  private http = inject(HttpClient);
+  // private http = inject(HttpClient);
   private apiUrl = 'http://localhost:8080/api/contatos';
 
   private filtroSubject = new BehaviorSubject<string>('');
   filtro$ = this.filtroSubject.asObservable();
+
+   constructor(private http: HttpClient) {}
 
   setFiltro(termo: string) {
     this.filtroSubject.next(termo);
