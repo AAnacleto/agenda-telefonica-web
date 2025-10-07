@@ -26,8 +26,11 @@ export class SidebarComponent implements OnInit, OnDestroy{
     this.contatoService.getTotalContatosAtivos().subscribe(total => this.totalAtivos = total);
     this.contatoService.getTotalContatosInativos().subscribe(total => this.totalInativos = total);
     this.contatoService.getTotalfavoritos().subscribe(total => this.totalFavoritos = total)
+     console.log(this.totalFavoritos);
 
     });
+   
+    
   }
 
   carregarTotalContatos() {

@@ -1,67 +1,44 @@
 
+<div *ngFor="let grupo of contatosAgrupados">
+  <!-- Letra indicadora -->
+  <h4 class="mt-3 mb-1">{{ grupo.letra }}</h4>
 
+  <!-- Lista de contatos do grupo -->
+  <div class="card mb-2" *ngFor="let contato of grupo.contatos">
+    <div class="row align-items-center g-0 p-2" [ngClass]="{'text-muted bg-light': !contato.ativo}">
+      
+      <!-- Ícone do usuário -->
+      <div class="col-auto">
+        <i class="bi bi-person-circle fs-2"></i>
+      </div>
 
+      <!-- Nome e telefone -->
+      <div class="col ms-3">
+        <div class="fw-bold">{{contato.nome}}</div>
+        <div class="text-muted">{{contato.celular}}</div>
+      </div>
 
-<div class="card mb-2" *ngFor="let contato of listaContatosFiltrados; let indexFavorito = index">
-  <div class="row align-items-center g-0 p-2">
-    <!-- Ícone do usuário -->
-    <div class="col-auto">
-      <i class="bi bi-person-circle fs-2"></i>
-    </div>
+      <!-- Favorito (só se ativo) -->
+      <div class="col-auto me-2">
+        <ng-container *ngIf="contato.ativo">
+          <button class="btn btn-link p-0" *ngIf="contato.favorito; else naoFavorito" (click)="desfavoritarContato(contato)">
+            <i class="bi bi-heart-fill text-danger"></i>
+          </button>
+          <ng-template #naoFavorito>
+            <button class="btn btn-link p-0" (click)="favoritarContato(contato)">
+              <i class="bi bi-heart"></i>
+            </button>
+          </ng-template>
+        </ng-container>
+      </div>
 
-    <!-- Nome e telefone -->
-    <div class="col ms-3">
-      <div class="fw-bold">{{contato.nome}}</div>
-      <div class="text-muted">{{contato.celular}}</div>
-    </div>
+      <!-- Edição (sempre ativo) -->
+      <div class="col-auto me-2">
+        <button class="btn btn-link p-0 text-primary" (click)="editarContato(contato.id)">
+          <i class="bi bi-pencil-fill fs-5"></i>
+        </button>
+      </div>
 
-  
-
-
-<div class="col-auto me-2">
-  <!-- Coração preenchido (favorito = true) -->
-  <!-- <button class="btn btn-link p-0" 
-          *ngIf="contato.favorito; else naoFavorito" 
-          (click)="favoritarContato(contato)">
-    <i class="bi bi-heart-fill text-danger"></i>
-  </button> -->
-
-  <!-- Coração vazio (favorito = false) -->
-  <!-- <ng-template #naoFavorito>
-    <button class="btn btn-link p-0" 
-            (click)="favoritarContato(contato)">
-      <i class="bi bi-heart"></i>
-    </button>
-  </ng-template> -->
-   <!-- Coração preenchido (favorito = true) -->
-  <button class="btn btn-link p-0" 
-          *ngIf="contato.favorito; else naoFavorito" 
-          (click)="desfavoritarContato(contato)">
-    <i class="bi bi-heart-fill text-danger"></i>
-  </button>
-
-  <!-- Coração vazio (favorito = false) -->
-  <ng-template #naoFavorito>
-    <button class="btn btn-link p-0" 
-            (click)="favoritarContato(contato)">
-      <i class="bi bi-heart"></i>
-    </button>
-  </ng-template>
-
-</div>
-
-
-    <!-- Edição -->
-    <div class="col-auto me-2">
-      <button class="btn btn-link p-0 text-primary"
-             (click)="editarContato(contato.id)"
-      >
-        <i class="bi bi-pencil-fill fs-5"></i>
-      </button>
-    </div>
-
-    <!-- Botão Inativar -->
-    <div class="col-auto">
     </div>
   </div>
 </div>

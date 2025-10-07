@@ -1,4 +1,4 @@
-<div class="container mt-4" class="p-4 border rounded shadow-sm bg-light">
+<!-- <div class="container mt-4" class="p-4 border rounded shadow-sm bg-light">
   <h3>{{ titulo }}</h3>
 
   <form [formGroup]="contatoForm" (ngSubmit)="salvarContato()">
@@ -45,16 +45,16 @@
 
 
     <div class="mt-3 d-flex gap-2">
-      <!-- Salvar ou Atualizar -->
-      <button class="btn btn-primary" type="submit" [disabled]="contatoForm.invalid">
+      <Salvar ou Atualizar -->
+      <!-- <button class="btn btn-primary" type="submit" [disabled]="contatoForm.invalid">
         {{ contatoId ? 'Atualizar' : 'Salvar' }}
-      </button>
+      </button> -->
 
       <!-- Excluir -->
-      <button class="btn btn-danger" type="button" *ngIf="contatoId" (click)="excluirContato()">
+      <!-- <button class="btn btn-danger" type="button" *ngIf="contatoId" (click)="excluirContato()">
         <i class="bi bi-trash"></i>Excluir
-      </button>
-
+      </button> -->
+<!-- 
     <button class="btn btn-warning" type="button"
     *ngIf="contatoId && contato.ativo == true"
     @fadeScale
@@ -68,6 +68,91 @@
     (click)="ativarContato()">
     <i class="bi bi-toggle-on"></i> Ativar
   </button>
+    </div>
+
+  </form>
+</div>  -->
+
+<div class="container mt-4 p-4 border rounded shadow-sm bg-light">
+  <h3>{{ titulo }}</h3>
+
+  <form [formGroup]="contatoForm" (ngSubmit)="salvarContato()">
+
+    <div class="row">
+
+      <div class="col-md-6 mb-3">
+        <label class="form-label">Nome</label>
+        <input type="text" class="form-control" formControlName="nome"
+               [readonly]="!contato.ativo && contatoId">
+        <small class="text-danger"
+               *ngIf="contatoForm.controls['nome'].invalid && contatoForm.controls['nome'].touched">
+          O nome é obrigatório e deve ter pelo menos 3 caracteres.
+        </small>
+      </div>
+
+      <div class="col-md-6 mb-3">
+        <label class="form-label">E-mail</label>
+        <input type="email" class="form-control" formControlName="email"
+               [readonly]="!contato.ativo && contatoId">
+        <small class="text-danger"
+               *ngIf="contatoForm.controls['email'].invalid && contatoForm.controls['email'].touched">
+          E-mail inválido.
+        </small>
+      </div>
+
+    </div>
+
+    <div class="row">
+
+      <div class="col-md-6 mb-3">
+        <label class="form-label">Celular</label>
+        <input type="text" class="form-control" formControlName="celular"
+               placeholder="(99) 9 9999-9999"
+               [readonly]="!contato.ativo && contatoId"
+               (input)="formatarTelefone($event,'celular')"
+               (keypress)="permitirApenasNumeros($event)" maxlength="16">
+        <small class="text-danger"
+               *ngIf="contatoForm.controls['celular'].invalid && contatoForm.controls['celular'].touched">
+          Informe um celular válido (apenas números).
+        </small>
+      </div>
+
+      <div class="col-md-6 mb-3">
+        <label class="form-label">Telefone (opcional)</label>
+        <input type="text" class="form-control" formControlName="telefone"
+               placeholder="(99) 9 9999-9999"
+               [readonly]="!contato.ativo && contatoId"
+               (input)="formatarTelefone($event,'telefone')"
+               (keypress)="permitirApenasNumeros($event)" maxlength="16">
+      </div>
+
+    </div>
+
+    <div class="mt-3 d-flex gap-2 align-items-center">
+
+      <button class="btn btn-primary" type="submit"
+              [disabled]="contatoForm.invalid || (!contato.ativo && contatoId)">
+        {{ contatoId ? 'Atualizar' : 'Salvar' }}
+      </button>
+
+      <button class="btn btn-danger" type="button" *ngIf="contatoId" (click)="excluirContato()">
+        <i class="bi bi-trash"></i> Excluir
+      </button>
+
+      <button class="btn btn-warning" type="button"
+              *ngIf="contatoId && contato.ativo"
+              @fadeScale
+              (click)="inativarContato()">
+        <i class="bi bi-slash-circle"></i> Inativar
+      </button>
+
+      <button class="btn btn-success" type="button"
+              *ngIf="contatoId && !contato.ativo"
+              @fadeScale
+              (click)="ativarContato()">
+        <i class="bi bi-toggle-on"></i> Ativar
+      </button>
+
     </div>
 
   </form>
