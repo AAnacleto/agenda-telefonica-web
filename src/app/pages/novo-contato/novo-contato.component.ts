@@ -61,11 +61,7 @@ export class NovoContatoComponent implements OnInit, CanComponentDeactivate  {
 
      if (contatoDoResolver) {
       this.titulo = "Editar Contato";
-      this.contato = contatoDoResolver;
-
-      // ============================
-      // IMPORTANTE: MANTÉM contatoId
-      // ============================
+      this.contato = contatoDoResolver;  
       this.contatoId = contatoDoResolver.id;
 
       this.contatoForm.patchValue({
@@ -78,37 +74,10 @@ export class NovoContatoComponent implements OnInit, CanComponentDeactivate  {
       });
     }
     
-    
-
-
-
-    // this.contatoId = Number(this.route.snapshot.paramMap.get('id'));
-    // console.log(this.contatoId);
-    
-
-    // if (this.contatoId) {
-    //   this.titulo = "Editar Contato";
-    //   this.carregarContato(this.contatoId);
-    // }
 
   }
 
-  // carregarContato(id: number) {
-  //   this.contatoService.buscarPorId(id).subscribe(contato => {
-  //     this.contato = contato;
-  //     console.log(this.contato);
-      
-  //     this.contatoForm.patchValue({
-  //       nome: contato.nome,
-  //       email: contato.email,
-  //       celular: contato.celular,
-  //       telefone: contato.telefone,
-  //       favorito: contato.favorito,
-  //       ativo: contato.ativo
-  //     });
-  //   });
-  // }
-
+  
 
   permitirApenasNumeros(event: KeyboardEvent) {
     const char = event.key;

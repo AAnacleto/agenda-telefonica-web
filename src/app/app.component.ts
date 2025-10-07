@@ -1,14 +1,12 @@
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
-import { SidebarComponent } from "./components/sidebar/sidebar.component";
-import { NavbarComponent } from "./components/navbar/navbar.component";
+import { RouterModule } from '@angular/router';
+
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, SidebarComponent, NavbarComponent],
-  templateUrl: './app.component.html',
-  styleUrl: './app.component.scss'
+  standalone: true,
+  imports: [RouterModule],
+  template: `<router-outlet></router-outlet>`,
+  
 })
-export class AppComponent {
-  title = 'agenda-telefonica';
-}
+export class AppComponent {}
