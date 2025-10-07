@@ -61,11 +61,6 @@ export class ContatoService {
     return this.http.patch<void>(`${this.apiUrl}/${id}/ativar`, {});
   }
 
-  /** Alternar status de favorito */
-  // toggleFavorito(id: number): Observable<any> {
-  //   return this.http.patch<any>(`${this.apiUrl}/${id}/favorito`, {});
-  // }
-
   // Favoritar
   favoritarContato(id: number): Observable<Contato> {
     return this.http.patch<Contato>(`${this.apiUrl}/${id}/favoritar`, {});
