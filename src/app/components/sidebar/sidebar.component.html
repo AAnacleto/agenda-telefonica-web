@@ -1,0 +1,42 @@
+
+
+<div class="d-flex flex-column p-3" style="width: 250px;">
+  <ul class="nav nav-pills flex-column">
+    <li class="nav-item mb-1">
+      <a class="nav-link"
+         routerLink="contatos/novo"
+         routerLinkActive="active"
+         [routerLinkActiveOptions]="{ exact: true }">
+         Novo Contato
+      </a>
+    </li>
+
+    <li class="nav-item mb-1">
+      <a class="nav-link"
+         routerLink="contatos/lista"
+         routerLinkActive="active"
+         [routerLinkActiveOptions]="{ exact: true }">
+         Contatos ({{totalAtivos}})
+      </a>
+    </li>
+
+    <li class="nav-item mb-1">
+      <a class="nav-link"
+         routerLink="contatos/favoritos"
+         routerLinkActive="active"
+         [routerLinkActiveOptions]="{ exact: true }">
+         Favoritos ({{totalFavoritos}})
+      </a>
+    </li>
+
+    <li class="nav-item mb-1">
+      <a class="nav-link"
+         routerLink="contatos/inativos"
+         routerLinkActive="active"
+         [routerLinkActiveOptions]="{ exact: true }">
+         Inativos ({{totalInativos}})
+      </a>
+    </li>
+  </ul>
+</div>
+
